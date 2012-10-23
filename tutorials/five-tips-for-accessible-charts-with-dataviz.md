@@ -7,7 +7,7 @@ publish: true
 
 # Tutorial: Tips for Creating Accessible Charts with Kendo UI DataViz
 
-**Summary**: In this post, I’ll share five practical tips (with code samples and illustrative videos) for making Kendo UI DataViz charts and graphs more accessible. These are things you can quickly and easily do in your own apps today to make it easier for disabled users to use assistive technologies to interact with your content.
+**Summary**: In this article, I’ll share five practical tips (with code samples and illustrative videos) for making Kendo UI DataViz charts and graphs more accessible. These are things you can quickly and easily do in your own apps today to make it easier for disabled users to use assistive technologies to interact with your content.
 
 ## The Case for Accessible Charts
 
@@ -41,69 +41,69 @@ In the next section, we'll look at five steps you can take to improve the access
 
 ## Five Tips for Accessible DataViz Charts
 
-1. Provide a text description of the chart
+###1. Provide a text description of the chart
 
-	The simplest thing you can do is to add a pure-text description of your chart to the page, as I’ve done in the example below.
+The simplest thing you can do is to add a pure-text description of your chart to the page, as I’ve done in the example below.
 
-	<iframe src="http://jsbin.com/odowud/9/embed?html,live" class="jsbin-embed" style="border: 1px solid #aaaaaa; width: 100%; min-height: 300px; height: 720px;"></iframe> <script src="http://static.jsbin.com/js/embed.js"></script>
+<iframe src="http://jsbin.com/odowud/9/embed?html,live" class="jsbin-embed" style="border: 1px solid #aaaaaa; width: 100%; min-height: 300px; height: 720px;"></iframe> <script src="http://static.jsbin.com/js/embed.js"></script>
 
-	If you take a look in the HTML pane, you’ll see that I wrapped my chart `div` in a `figure` element, and then added a `figcaption` that explains the chart in detail.
+If you take a look in the HTML pane, you’ll see that I wrapped my chart `div` in a `figure` element, and then added a `figcaption` that explains the chart in detail.
 
-	Here’s a [brief video](http://www.youtube.com/watch?v=QyB3sTVRd3E&feature=youtu.be) of VoiceOver interacting with the `figcaption` element:
+Here’s a [brief video](http://www.youtube.com/watch?v=QyB3sTVRd3E&feature=youtu.be) of VoiceOver interacting with the `figcaption` element:
 
-	<iframe width="853" height="480" src="http://www.youtube.com/embed/QyB3sTVRd3E" frameborder="0" allowfullscreen></iframe>
+<iframe width="853" height="480" src="http://www.youtube.com/embed/QyB3sTVRd3E" frameborder="0" allowfullscreen></iframe>
 
-	In this example, my description is detailed, but yours need not be. The goal is to provide disabled users with the key information found in your chart, which will vary, depending on the data.
+In this example, my description is detailed, but yours need not be. The goal is to provide disabled users with the key information found in your chart, which will vary, depending on the data.
 
-2. Add `role` and `title` attributes to the chart div
+###2. Add `role` and `title` attributes to the chart div
 
-	Another simple step you can take is to add an WAI-ARIA role and a title to the div that contains your chart. This can be as simple as doing the following:
+Another simple step you can take is to add an WAI-ARIA role and a title to the div that contains your chart. This can be as simple as doing the following:
 
-		<div id="chart" role="img" title="Sources of Electricity Produced in Spain, 2008"></div>
+	<div id="chart" role="img" title="Sources of Electricity Produced in Spain, 2008"></div>
 	
-	In the first video, even though VoiceOver could read the chart title and legend to it, it couldn’t “select” the container, or even tell me I was interacting with an HTML element. By adding a role of “img” and a title, VoiceOver can do both, which you can see in the first 15 seconds of the video for step #1.
+In the first video, even though VoiceOver could read the chart title and legend to it, it couldn’t “select” the container, or even tell me I was interacting with an HTML element. By adding a role of “img” and a title, VoiceOver can do both, which you can see in the first 15 seconds of the video for step #1.
 
-3. Add `title` and `desc` elements to the root of the `svg` element
+###3. Add `title` and `desc` elements to the root of the `svg` element
 
-	The next step we can take is to manually add title and description elements to the SVG element created by Kendo UI DataViz. These elements can be leveraged by screen readers as fallback content to be read to disabled users.
+The next step we can take is to manually add title and description elements to the SVG element created by Kendo UI DataViz. These elements can be leveraged by screen readers as fallback content to be read to disabled users.
 
-	<iframe src="http://jsbin.com/odowud/19/embed?html,javascript" class="jsbin-embed" style="border: 1px solid #aaaaaa; width: 100%; min-height: 300px; height: 720px;"></iframe> <script src="http://static.jsbin.com/js/embed.js"></script>
+<iframe src="http://jsbin.com/odowud/19/embed?html,javascript" class="jsbin-embed" style="border: 1px solid #aaaaaa; width: 100%; min-height: 300px; height: 720px;"></iframe> <script src="http://static.jsbin.com/js/embed.js"></script>
 
-	In this sample, I first create a template script block for the `<title>` and `<desc>` fields. Then, I load the html for that block into a `kendo.template` and render the template using a chartDetails object. Finally, I’ll use jQuery to select the `<svg>` element inside of my chart `<div>` and prepend the title and description to the beginning of that element.
+In this sample, I first create a template script block for the `<title>` and `<desc>` fields. Then, I load the html for that block into a `kendo.template` and render the template using a chartDetails object. Finally, I’ll use jQuery to select the `<svg>` element inside of my chart `<div>` and prepend the title and description to the beginning of that element.
 
-	At the time of this writing, VoiceOver (as well as all of the other major screen readers, AFAIK) doesn’t do anything with the title and desc elements, but since this technique is explicitly called out in the W3C’s [guidelines for accessible SVG](http://www.w3.org/TR/SVG-access/), I still recommend this step, even if as a future-proofing technique.
+At the time of this writing, VoiceOver (as well as all of the other major screen readers, AFAIK) doesn’t do anything with the title and desc elements, but since this technique is explicitly called out in the W3C’s [guidelines for accessible SVG](http://www.w3.org/TR/SVG-access/), I still recommend this step, even if as a future-proofing technique.
 
-4. Generate an accessible data table from the DataSource
+###4. Generate an accessible data table from the DataSource
 
-	The last two steps deal with creating a data table to serve as an alternative or supplement to the chart or graph. Assuming I’m using a DataSource to populate my chart, I can use the same DataSource and Kendo Templates to create a tabular representation of the same data.
+The last two steps deal with creating a data table to serve as an alternative or supplement to the chart or graph. Assuming I’m using a DataSource to populate my chart, I can use the same DataSource and Kendo Templates to create a tabular representation of the same data.
 
-	<iframe src="http://jsbin.com/odowud/15/embed?html,javascript,live" class="jsbin-embed" style="border: 1px solid #aaaaaa; width: 100%; min-height: 300px; height: 720px;"></iframe> <script src="http://static.jsbin.com/js/embed.js"></script>
+<iframe src="http://jsbin.com/odowud/15/embed?html,javascript,live" class="jsbin-embed" style="border: 1px solid #aaaaaa; width: 100%; min-height: 300px; height: 720px;"></iframe> <script src="http://static.jsbin.com/js/embed.js"></script>
 
-	In the HTML window, I first create a template script block for my table. Next, in the createTable function, I’ll pass that script into a template, render it with the DataSource and then add the table to the page. The result is a simple, accessible table based on the same data as the chart itself. Here’s a [quick video](http://www.youtube.com/watch?v=0xdrBjwiFVA&feature=plcp) of how VoiceOver allows me to interact with the table:
+In the HTML window, I first create a template script block for my table. Next, in the createTable function, I’ll pass that script into a template, render it with the DataSource and then add the table to the page. The result is a simple, accessible table based on the same data as the chart itself. Here’s a [quick video](http://www.youtube.com/watch?v=0xdrBjwiFVA&feature=plcp) of how VoiceOver allows me to interact with the table:
 
-	<iframe width="853" height="480" src="http://www.youtube.com/embed/0xdrBjwiFVA" frameborder="0" allowfullscreen></iframe>
+<iframe width="853" height="480" src="http://www.youtube.com/embed/0xdrBjwiFVA" frameborder="0" allowfullscreen></iframe>
 
-5. Create an off-screen table, or allow the table and chart to be swapped on-screen
+###5. Create an off-screen table, or allow the table and chart to be swapped on-screen
 
-	Generating a data table is nice, but you may not want to display the raw data on-screen with the chart for all users. In that case, you have two options. You can either: 1) place the table off-screen, invisible to sighted users, but available to screen readers; or, 2) provide all users with the ability to switch between the chart and table.
+Generating a data table is nice, but you may not want to display the raw data on-screen with the chart for all users. In that case, you have two options. You can either: 1) place the table off-screen, invisible to sighted users, but available to screen readers; or, 2) provide all users with the ability to switch between the chart and table.
 
-	Here’s an example of the first:
+Here’s an example of the first:
 
-	<iframe src="http://jsbin.com/odowud/20/embed?html,css,live" class="jsbin-embed" style="border: 1px solid #aaaaaa; width: 100%; min-height: 300px; height: 720px;"></iframe> <script src="http://static.jsbin.com/js/embed.js"></script>
+<iframe src="http://jsbin.com/odowud/20/embed?html,css,live" class="jsbin-embed" style="border: 1px solid #aaaaaa; width: 100%; min-height: 300px; height: 720px;"></iframe> <script src="http://static.jsbin.com/js/embed.js"></script>
 
-	In this example, I’ve created a CSS class called “hidden,” which positions any element 10000px to the left, and off-screen. Now, my data table is no longer on the screen, but is accessible to screen readers, as shown in the [following video](http://www.youtube.com/watch?v=0xdrBjwiFVA&feature=youtu.be):
+In this example, I’ve created a CSS class called “hidden,” which positions any element 10000px to the left, and off-screen. Now, my data table is no longer on the screen, but is accessible to screen readers, as shown in the [following video](http://www.youtube.com/watch?v=0xdrBjwiFVA&feature=youtu.be):
 
-	<iframe width="853" height="480" src="http://www.youtube.com/embed/0xdrBjwiFVA" frameborder="0" allowfullscreen></iframe>
+<iframe width="853" height="480" src="http://www.youtube.com/embed/0xdrBjwiFVA" frameborder="0" allowfullscreen></iframe>
 
-	For an alternate approach, I can place a link or button on the screen that allows the user to swap between the table and the chart. The advantage of this approach is that it enhances the experience for all users by giving them a choice as to which presentation of the data they prefer.
+For an alternate approach, I can place a link or button on the screen that allows the user to swap between the table and the chart. The advantage of this approach is that it enhances the experience for all users by giving them a choice as to which presentation of the data they prefer.
 
-	<iframe src="http://jsbin.com/odowud/21/embed?javascript,live" class="jsbin-embed" style="border: 1px solid #aaaaaa; width: 100%; min-height: 300px; height: 720px;"></iframe> <script src="http://static.jsbin.com/js/embed.js"></script>
+<iframe src="http://jsbin.com/odowud/21/embed?javascript,live" class="jsbin-embed" style="border: 1px solid #aaaaaa; width: 100%; min-height: 300px; height: 720px;"></iframe> <script src="http://static.jsbin.com/js/embed.js"></script>
 
-	In this case, I’ve placed a “Show Table” link on the screen. When the user clicks this link, the chart is hidden, the table is displayed and the link text changes to “Show Chart.” As depicted in the [following video](http://www.youtube.com/watch?v=kZNz1H2Zp3U&feature=relmfu), VoiceOver users can now choose which representation they wish to interact with:
+In this case, I’ve placed a “Show Table” link on the screen. When the user clicks this link, the chart is hidden, the table is displayed and the link text changes to “Show Chart.” As depicted in the [following video](http://www.youtube.com/watch?v=kZNz1H2Zp3U&feature=relmfu), VoiceOver users can now choose which representation they wish to interact with:
 
-	<iframe width="853" height="480" src="http://www.youtube.com/embed/kZNz1H2Zp3U" frameborder="0" allowfullscreen></iframe>
+<iframe width="853" height="480" src="http://www.youtube.com/embed/kZNz1H2Zp3U" frameborder="0" allowfullscreen></iframe>
 
-	As I've said already, SVG itself is pretty accessible out of the box, but the tips above can help you make your charts and graphs even more consumable, and thus more accessible, to disabled users. Better still, following these tips, and having an accessible mindset as you build your sites and applications, can help you create content that is more accessible to all of your users.
+As I've said already, SVG itself is pretty accessible out of the box, but the tips above can help you make your charts and graphs even more consumable, and thus more accessible, to disabled users. Better still, following these tips, and having an accessible mindset as you build your sites and applications, can help you create content that is more accessible to all of your users.
 
 ### Resources
 
