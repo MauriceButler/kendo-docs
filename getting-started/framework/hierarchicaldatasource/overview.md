@@ -1,5 +1,7 @@
 ---
 title: Overview
+meta_title: DataSource component for data binding in Kendo UI framework
+meta_description: How to get started using DataSource component in Kendo UI framework to simplify data binding and operations.
 slug: hierarchicaldatasource-overview
 publish: true
 ---
