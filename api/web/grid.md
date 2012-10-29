@@ -187,6 +187,21 @@ The template for column's cells.
          ]
       });
 
+### columns.headerTemplate `String`
+
+The template for column's header cell. If sorting is enabled, it will be wrapped in a `<a class="k-link">` element, so the template should consist of only inline elements
+in order to have valid HTML markup in the Grid.
+
+#### Example
+
+    $("#grid").kendoGrid({
+         columns: [
+             {
+                 headerTemplate: '<input type="checkbox" id="checkAll" />'
+            }
+         ]
+      });
+
 ### columns.title `String`
 
 The text that will be displayed in the column header.
