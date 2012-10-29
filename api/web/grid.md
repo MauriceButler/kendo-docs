@@ -77,7 +77,47 @@ A collection of column objects or collection of strings that represents the name
                    { title: "Year", field: "year", filterable: false, sortable: true, format: "{0:dd/MMMM/yyyy}" } ];
     });
 
-### columns.command `String`
+### columns.aggregates `Array`
+
+The aggregates to be used when grouping is applied
+
+#### Example
+
+    $("#grid").kendoGrid({
+         dataSource: {
+             data: createRandomData(50),
+             pageSize: 10
+         },
+         columns: [
+             {
+                 field: "Name"
+             },
+             {
+                 field: "UnitPrice",
+                 aggregates: ["count", "sum"]
+             }
+         ]
+      });
+    
+### columns.attributes `Object`
+
+Definition of column cells' HTML attributes. Reserved words in Javascript should be enclosed in quotation marks.
+
+#### Example
+
+    $("#grid").kendoGrid({
+        columns: [
+            {
+                field: "Price",
+                attributes: {
+                    "class": "myClass",
+                    style: "text-align: right"
+                }
+            }
+        ]
+    });
+
+### columns.command `String|Array`
 
 Definition of command column. The supported built-in commands are: "create", "cancel", "save", "destroy".
 
@@ -160,6 +200,39 @@ The format that will be applied on the column cells.
          ]
       });
 
+### columns.headerAttributes `Object`
+
+Definition of column header cell's HTML attributes. Reserved words in Javascript should be enclosed in quotation marks.
+
+#### Example
+
+    $("#grid").kendoGrid({
+        columns: [
+            {
+                field: "Price",
+                headerAttributes: {
+                    "class": "myHeader",
+                    style: "text-align: right"
+                }
+            }
+        ]
+    });
+      
+### columns.headerTemplate `String`
+
+The template for column's header cell. If sorting is enabled, it will be wrapped in a `<a class="k-link">` element, so the template should consist of only inline elements
+in order to have valid HTML markup in the Grid.
+
+#### Example
+
+    $("#grid").kendoGrid({
+         columns: [
+             {
+                 headerTemplate: '<input type="checkbox" id="checkAll" />'
+            }
+         ]
+      });
+      
 ### columns.sortable `Boolean`*(default: true)*
 
  Specifies whether given column is sortable.
@@ -187,17 +260,73 @@ The template for column's cells.
          ]
       });
 
-### columns.headerTemplate `String`
+### columns.groupHeaderTemplate `String`
 
-The template for column's header cell. If sorting is enabled, it will be wrapped in a `<a class="k-link">` element, so the template should consist of only inline elements
-in order to have valid HTML markup in the Grid.
+The template for group header item.
 
 #### Example
 
     $("#grid").kendoGrid({
+         dataSource: {
+             data: createRandomData(50),
+             pageSize: 10,
+             group: { field: "BirthDate" }
+         },
          columns: [
              {
-                 headerTemplate: '<input type="checkbox" id="checkAll" />'
+                 field: "Name"
+             },
+             {
+                 field: "BirthDate",
+                 title: "Birth Date",
+                 groupHeaderTemplate: 'Birth Date: #= value #'
+            }
+         ]
+      });
+
+### columns.groupFooterTemplate `String`
+
+The template for column's cell in group footer item.
+
+#### Example
+
+    $("#grid").kendoGrid({
+         dataSource: {
+             data: createRandomData(50),
+             pageSize: 10,
+             group: { field: "BirthDate" }
+         },
+         columns: [
+             {
+                 field: "Name"
+             },
+             {
+                 field: "BirthDate",
+                 title: "Birth Date",
+                 groupFooterTemplate: 'custom text'
+            }
+         ]
+      });
+
+### columns.footerTemplate `String`
+
+The template for column's cell in footer item.
+
+#### Example
+
+    $("#grid").kendoGrid({
+         dataSource: {
+             data: createRandomData(50),
+             pageSize: 10
+         },
+         columns: [
+             {
+                 field: "Name"
+             },
+             {
+                 field: "BirthDate",
+                 title: "Birth Date",
+                 footerTemplate: 'custom footer text'
             }
          ]
       });
