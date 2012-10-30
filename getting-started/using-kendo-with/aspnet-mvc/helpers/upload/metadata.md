@@ -6,7 +6,7 @@ slug: mvc-upload-metadata
 publish: true
 ---
 
-Asynchronous uploading usually means that you lose the association betwen the files and the context that they originate from.
+Asynchronous uploading usually means that you lose the association between the files and the context that they originate from.
 
 Take an e-mail application for example. The save handler must associate the uploaded files to a particular message.
 
