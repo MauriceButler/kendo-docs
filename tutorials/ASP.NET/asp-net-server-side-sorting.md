@@ -1,5 +1,7 @@
 ---
 title: Server Side Sorting
+meta_title: Server side sorting tutorial with ASP.NET WebAPI, Kendo UI and LinqToSQL
+meta_description: This how-to article will help you sort server side, using  ASP.NET WebAPI, Kendo UI and LinqToSQL.
 slug: tutorial-server-side-sorting
 tags: Tutorial
 publish: true
