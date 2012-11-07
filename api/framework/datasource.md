@@ -1634,7 +1634,7 @@ Fires when an error occurs during data read or sync. The event arguments are the
         // handle event
     });
 
-### error
+### sync
 
 Fires after changes are synced.
 
